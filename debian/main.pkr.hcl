@@ -45,7 +45,9 @@ source "vmware-iso" "vm" {
 
 	shutdown_command = "echo ${var.user_pass} | sudo -S /sbin/shutdown -h now"
 
-    // https://developer.hashicorp.com/packer/guides/automatic-operating-system-installs/preseed_ubuntu
+	vm_name = "debian-tmp"
+
+	// https://developer.hashicorp.com/packer/guides/automatic-operating-system-installs/preseed_ubuntu
 	// Mounting an additional CD drives the Debian installer crazy, so I opted for pulling all provisioning files
 	// from the HTTP server as well (exposed to the provisioners as PACKER_HTTP_ADDR: https://github.com/hashicorp/packer/pull/4409 )
 	http_directory = "http_files"
