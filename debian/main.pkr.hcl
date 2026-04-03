@@ -27,7 +27,7 @@ source "vmware-iso" "vm" {
 	ssh_password = var.user_pass
 	ssh_timeout = "10m"
 
-	cpus = 4 	// 4 vCPUs spread on 2 sockets
+	cpus = 4	// 4 vCPUs spread on 2 sockets
 	cores = 2
 	memory = 32768 // 32 GiB of RAM. My laptop has 46 GiB
 
@@ -36,7 +36,7 @@ source "vmware-iso" "vm" {
 	disk_type_id = 0 // "Growable virtual disk contained in a single file (monolithic sparse)."
 
 	// I don't know where this is documented.
-    // I created a VM and `guestOS` was this in the generated .vmx
+	// I created a VM and `guestOS` was this in the generated .vmx
 	guest_os_type = "debian12-64"
 	vhv_enabled = true
 
@@ -59,7 +59,7 @@ source "vmware-iso" "vm" {
 		" debconf/priority=critical",
 		" preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <enter>",
 	]
-	boot_wait = "1s" // In my tests it boots quite fast
+	boot_wait = "5s" // In my tests it boots quite fast. 1s  was too fast, though...
 }
 
 build {
